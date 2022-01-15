@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    
+    <ItemGroup>
+      <ProjectReference Include="..\AUSG.Eats.Common.Infrastructure\AUSG.Eats.Common.Infrastructure.csproj" />
+      <ProjectReference Include="..\AUSG.Eats.Customer.Domain\AUSG.Eats.Customer.Domain.csproj" />
+    </ItemGroup>
+
+</Project>

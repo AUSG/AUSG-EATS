@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+
+    <ItemGroup>
+      <ProjectReference Include="..\AUSG.Eats.Common\AUSG.Eats.Common.csproj" />
+    </ItemGroup>
+
+</Project>

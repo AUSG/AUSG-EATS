@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="..\props\AUSG.Eats.Test.props" />
+
+    <ItemGroup>
+      <ProjectReference Include="..\AUSG.Eats.Customer.Application\AUSG.Eats.Customer.Application.csproj" />
+    </ItemGroup>
+
+</Project>
