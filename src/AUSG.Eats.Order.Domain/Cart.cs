@@ -2,20 +2,20 @@
 
 public class Cart
 {
-    public long? UserId { get; set; }
-    
     // IList에는 AsReadOnly();가 없다. (why?)
-    private readonly List<CartItem> _items = new List<CartItem>();
-    
-    // IReadOnlyCollection에서 hint로 IEnumerable로 변경함
-    // hint로 Expression Body로 변경함
-    public IEnumerable<CartItem> Items => _items.AsReadOnly();
+    private readonly List<CartItem> _items = new();
 
     public Cart(long? userId = null)
     {
         UserId = userId;
     }
-    
+
+    public long? UserId { get; set; }
+
+    // IReadOnlyCollection에서 hint로 IEnumerable로 변경함
+    // hint로 Expression Body로 변경함
+    public IEnumerable<CartItem> Items => _items.AsReadOnly();
+
     public void AddToCart(CartItem newItem)
     {
         _items.Add(newItem);
@@ -32,7 +32,7 @@ public class Cart
             throw new ArgumentException("없는 CartItem을 변경하려고 한다.");
         _items.Add(itemToChange);
     }
-    
+
     public override bool Equals(object? obj)
     {
         // use null propagation (잘 이해 못하고 있습니다.)

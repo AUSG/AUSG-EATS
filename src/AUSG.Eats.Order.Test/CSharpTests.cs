@@ -4,13 +4,6 @@ namespace AUSG.Eats.Order.Test;
 
 public class CSharpTests
 {
-
-    class IntInit
-    {
-        public int id { get; set; }
-        public int? nullableId { get; set; }
-    }
-    
     [Fact(DisplayName = "Integer fields are initialized to 0")]
     public void int_init_value_is_0_in_class()
     {
@@ -18,7 +11,7 @@ public class CSharpTests
 
         Assert.Equal(0, sut.id);
     }
-    
+
     [Fact(DisplayName = "Nullable integer fields are initialized to 0")]
     public void nullable_int_init_value_is_null_in_class()
     {
@@ -32,24 +25,6 @@ public class CSharpTests
         Assert.True(sut.nullableId == null);
     }
 
-    class EqualsImplEx
-    {
-        public long? Id { get; }
-
-        public EqualsImplEx(long? id = null)
-        {
-            Id = id;
-        }
-        
-        public override bool Equals(object? obj)
-        {
-            // use null propagation
-            if (obj is not EqualsImplEx other)
-                return false;
-            return Id == other.Id;
-        }
-    }
-
     [Fact(DisplayName = "Comparing with null instance returns false using null propagation")]
     public void compare_with_null_instance_returns_false()
     {
@@ -58,5 +33,29 @@ public class CSharpTests
 
         Assert.True(NullInstance.Id == null);
         Assert.NotEqual(NonNullInstance, NullInstance);
+    }
+
+    private class IntInit
+    {
+        public int id { get; set; }
+        public int? nullableId { get; set; }
+    }
+
+    private class EqualsImplEx
+    {
+        public EqualsImplEx(long? id = null)
+        {
+            Id = id;
+        }
+
+        public long? Id { get; }
+
+        public override bool Equals(object? obj)
+        {
+            // use null propagation
+            if (obj is not EqualsImplEx other)
+                return false;
+            return Id == other.Id;
+        }
     }
 }

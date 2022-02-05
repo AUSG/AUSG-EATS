@@ -2,10 +2,6 @@
 
 public class CartItem
 {
-    public long? Id { get; set; }
-    public List<CartItemOption> Options { get; set; }
-    public int Quantity { get; set; }
-
     // C#에서 지원하는 신기한 생성자 상속(?) 문법
     public CartItem(long? id, List<CartItemOption> options, int quantity) : this(options, quantity)
     {
@@ -17,8 +13,11 @@ public class CartItem
         Options = options;
         Quantity = quantity;
     }
-    
-    
+
+    public long? Id { get; set; }
+    public List<CartItemOption> Options { get; set; }
+    public int Quantity { get; set; }
+
     public override bool Equals(object? obj)
     {
         // use null propagation (잘 이해 못하고 있습니다.)
