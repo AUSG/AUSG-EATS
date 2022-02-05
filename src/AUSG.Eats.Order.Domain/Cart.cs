@@ -35,10 +35,11 @@ public class Cart
     
     public override bool Equals(object? obj)
     {
-        if ((obj == null) || !(GetType() == obj.GetType()))
+        // use null propagation (잘 이해 못하고 있습니다.)
+        // see TC: CSharpTests#compare_with_null_instance_returns_false
+        if (obj is not Cart other)
             return false;
-        var another = (Cart) obj;
-        return UserId == another.UserId;
+        return UserId == other.UserId;
     }
 
     public override int GetHashCode()
