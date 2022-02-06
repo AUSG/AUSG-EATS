@@ -2,18 +2,15 @@
 
 public class Cart
 {
-    // IList에는 AsReadOnly();가 없다. (why?)
     private readonly List<CartItem> _items = new();
+
+    private long? _userId;
 
     public Cart(long? userId = null)
     {
-        UserId = userId;
+        _userId = userId;
     }
 
-    public long? UserId { get; set; }
-
-    // IReadOnlyCollection에서 hint로 IEnumerable로 변경함
-    // hint로 Expression Body로 변경함
     public IEnumerable<CartItem> Items => _items.AsReadOnly();
 
     public void AddToCart(CartItem newItem)
@@ -39,12 +36,12 @@ public class Cart
         // see TC: CSharpTests#compare_with_null_instance_returns_false
         if (obj is not Cart other)
             return false;
-        return UserId == other.UserId;
+        return _userId == other._userId;
     }
 
     public override int GetHashCode()
     {
         // Non-readonly property referenced in 'GetHashCode()' ??
-        return UserId.GetHashCode();
+        return _userId.GetHashCode();
     }
 }

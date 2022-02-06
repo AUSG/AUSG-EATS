@@ -2,21 +2,12 @@
 
 public class CartItem
 {
-    // C#에서 지원하는 신기한 생성자 상속(?) 문법
-    public CartItem(long? id, List<CartItemOption> options, int quantity) : this(options, quantity)
-    {
-        Id = id;
-    }
+    private long? _id;
 
-    public CartItem(List<CartItemOption> options, int quantity)
+    public CartItem(long? id)
     {
-        Options = options;
-        Quantity = quantity;
+        _id = id;
     }
-
-    public long? Id { get; set; }
-    public List<CartItemOption> Options { get; set; }
-    public int Quantity { get; set; }
 
     public override bool Equals(object? obj)
     {
@@ -24,12 +15,12 @@ public class CartItem
         // see TC: CSharpTests#compare_with_null_instance_returns_false
         if (obj is not CartItem other)
             return false;
-        return Id == other.Id;
+        return _id == other._id;
     }
 
     public override int GetHashCode()
     {
         // Non-readonly property referenced in 'GetHashCode()' ??
-        return Id.GetHashCode();
+        return _id.GetHashCode();
     }
 }
